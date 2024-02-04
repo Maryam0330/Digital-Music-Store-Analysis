@@ -1,5 +1,8 @@
 # Digital-Music-Store-Analysis
 
+[![MySQL](https://img.shields.io/badge/MySQL-007BFF?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![MySQL Workbench](https://img.shields.io/badge/MySQL-Workbench-007BFF?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/products/workbench/)
+
 # Objective:
 Conducted a comprehensive analysis of the digital music store dataset using SQL to provide valuable insights that contribute to a deeper understanding of the business landscape. By addressing fundamental questions related to the dataset, aim to assist the digital music store in gauging its business growth and identifying potential areas for improvement or strategic development. Through structured SQL queries and analyses, the objective is to empower the store with actionable information to make informed decisions and enhance its overall operational effectiveness.
 
