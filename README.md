@@ -5,4 +5,3 @@ Conducted a comprehensive analysis of the digital music store dataset using SQL 
 
 # Music Store Database Schema:
 ![Database Schema Diagram](https://github.com/Maryam0330/Digital-Music-Store-Analysis/assets/122341923/11f08786-4606-4d09-b46b-3dd7ecc42cbc)
-)
