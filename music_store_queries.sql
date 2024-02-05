@@ -16,7 +16,7 @@ LIMIT 1
 
 SELECT 
 	COUNT(*) AS invoice_count,
-  billing_country
+	billing_country
 FROM invoice
 GROUP BY billing_country
 ORDER BY invoice_count DESC
@@ -73,14 +73,14 @@ Return your list ordered alphabetically by email starting with A. */
 
 SELECT
 	c.email,
-  c.first_name,
-  c.last_name
+	c.first_name,
+	c.last_name
 FROM customer c
 JOIN invoice i ON c.customer_id = i.customer_id
 JOIN invoice_line il ON i.invoice_id = il.invoice_id
 WHERE track_id IN (
-	  SELECT track_id 
-    FROM track t
+	SELECT track_id 
+	FROM track t
     JOIN genre g ON t.genre_id = g.genre_id
     WHERE g.name LIKE 'ROCK')
 ORDER BY email 
@@ -90,9 +90,9 @@ ORDER BY email
 
 SELECT 
 	DISTINCT(c.email) AS email,
-  c.first_name,
-  c.last_name,
-  g.name
+	c.first_name,
+	c.last_name,
+	g.name
 FROM customer c
 JOIN invoice i ON c.customer_id = i.customer_id
 JOIN invoice_line il ON i.invoice_id = il.invoice_id
@@ -108,7 +108,7 @@ Write a query that returns the Artist name and total track count of the top 10 r
 SELECT
 	ar.artist_id,
 	ar.name,
-  COUNT(ar.artist_id) AS no_of_songs
+	COUNT(ar.artist_id) AS no_of_songs
 FROM artist ar 
 JOIN album ab ON ar.artist_id = ab.artist_id
 JOIN track t ON ab.album_id = t.album_id 
@@ -116,7 +116,7 @@ JOIN genre g ON t.genre_id = g.genre_id
 WHERE g.name LIKE 'ROCK'
 GROUP BY 
 	ar.artist_id, 
-  ar.name
+	ar.name
 ORDER BY no_of_songs DESC
 LIMIT 10
   
@@ -126,11 +126,11 @@ Return the Name and Milliseconds for each track. Order by the song length with t
 
 SELECT 
 	name,
-  milliseconds
+	milliseconds
 FROM track
 WHERE milliseconds > (
 	SELECT AVG(milliseconds) AS avg_song_length
-  FROM track)
+	FROM track)
 ORDER BY milliseconds DESC
 
 
@@ -139,7 +139,10 @@ ORDER BY milliseconds DESC
 /* Q1: Find how much amount spent by each customer on artists? Write a query to return customer name, artist name and total spent */
 
 WITH best_selling_artist AS(
-	SELECT ar.artist_id, ar.name, SUM(il.unit_price * il.quantity) AS total_spent
+	SELECT 
+		ar.artist_id, 
+        ar.name, 
+        SUM(il.unit_price * il.quantity) AS total_spent
 	FROM artist ar
 	JOIN album al ON ar.artist_id = al.artist_id
     JOIN track t ON al.album_id = t.album_id
@@ -175,8 +178,8 @@ WITH popular_music_genre AS(
 	SELECT 
 		COUNT(il.quantity) AS purchases, 
 		c.country,
-        	g.genre_id,
-        	g.name,
+		g.genre_id,
+		g.name,
 		ROW_NUMBER() OVER (PARTITION BY c.country ORDER BY COUNT(il.quantity) DESC) AS row_num
     FROM customer c
     JOIN invoice i ON c.customer_id = i.customer_id
