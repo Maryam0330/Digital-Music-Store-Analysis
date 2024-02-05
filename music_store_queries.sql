@@ -81,8 +81,8 @@ JOIN invoice_line il ON i.invoice_id = il.invoice_id
 WHERE track_id IN (
 	SELECT track_id 
 	FROM track t
-    JOIN genre g ON t.genre_id = g.genre_id
-    WHERE g.name LIKE 'ROCK')
+    	JOIN genre g ON t.genre_id = g.genre_id
+    	WHERE g.name LIKE 'ROCK')
 ORDER BY email 
 
 
@@ -141,15 +141,15 @@ ORDER BY milliseconds DESC
 WITH best_selling_artist AS(
 	SELECT 
 		ar.artist_id, 
-        ar.name, 
-        SUM(il.unit_price * il.quantity) AS total_spent
+        	ar.name, 
+        	SUM(il.unit_price * il.quantity) AS total_spent
 	FROM artist ar
 	JOIN album al ON ar.artist_id = al.artist_id
-    JOIN track t ON al.album_id = t.album_id
-    JOIN invoice_line il ON t.track_id = il.track_id 
-    GROUP BY 1, 2
-    ORDER BY 3 DESC
-    LIMIT 1
+        JOIN track t ON al.album_id = t.album_id
+    	JOIN invoice_line il ON t.track_id = il.track_id 
+    	GROUP BY 1, 2
+    	ORDER BY 3 DESC
+    	LIMIT 1
 )
 
 SELECT
@@ -188,9 +188,9 @@ WITH popular_music_genre AS(
     JOIN genre g ON t.genre_id = g.genre_id
     GROUP BY 2, 3, 4
     ORDER BY 
-		2 ASC, 
-		1 DESC
-    )
+	2 ASC, 
+	1 DESC
+)
     
 SELECT *
 FROM popular_music_genre
@@ -205,7 +205,7 @@ For countries where the top amount spent is shared, provide all customers who sp
 
 WITH highest_spending_customer AS(
 	SELECT
-		c.customer_id,
+	c.customer_id,
         c.first_name,
         c.last_name,
         i.billing_country,
@@ -215,9 +215,9 @@ WITH highest_spending_customer AS(
     JOIN invoice i ON c.customer_id = i.customer_id
     GROUP BY 1, 2, 3, 4
     ORDER BY 
-		4 ASC, 
+	4 ASC, 
         5 DESC
-        )
+)
     
 SELECT *
 FROM highest_spending_customer
